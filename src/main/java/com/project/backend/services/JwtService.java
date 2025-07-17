@@ -12,18 +12,14 @@ import java.security.Key;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Base64;
 import java.util.function.Function;
 
 @Service
 public class JwtService {
-
-    @Value("${application.security.jwt.secret-key}")
-    private String secretKey;
-    @Value("${application.security.jwt.expiration}")
-    private long jwtExpiration;
-    @Value("${application.security.jwt.refresh-token.expiration}")
-    private long refreshExpiration;
-
+    private String secretKey = Base64.getEncoder().encodeToString(Jwts.SIG.HS256.key().build().getEncoded());
+    private long jwtExpiration = 35367788;
+    private long refreshExpiration = 34689009;
     public String extractUsername(String token) {
         return extractClaim(token, Claims::getSubject);
     }

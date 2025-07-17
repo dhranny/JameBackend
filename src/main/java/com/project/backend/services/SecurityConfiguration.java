@@ -32,6 +32,9 @@ public class SecurityConfiguration {
                                 "/api/v1/auth/**", // Public endpoints for authentication
                                 "/h2-console/**",  // Allow access to H2 console
                                 "/v2/api-docs",
+                                "/app/**",
+                                "/error",
+                                "/gs-guide-websocket/**",
                                 "/v3/api-docs",
                                 "/v3/api-docs/**",
                                 "/swagger-resources",
@@ -40,7 +43,8 @@ public class SecurityConfiguration {
                                 "/configuration/security",
                                 "/swagger-ui/**",
                                 "/webjars/**",
-                                "/swagger-ui.html"
+                                "/swagger-ui.html",
+                                "ws/**" //TODO: remove when you want to regain security
                         )
                         .permitAll()
                         .anyRequest()
