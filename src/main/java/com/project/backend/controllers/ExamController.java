@@ -46,9 +46,9 @@ public class ExamController {
     }
 
     @PostMapping("/format")
-    public ResponseEntity<String> createFormat(@RequestBody ExamFormat ExamFormat){
-        String formatId = formatRepo.save(ExamFormat);
-        return new ResponseEntity<>(formatId, HttpStatus.CREATED);
+    public ResponseEntity<String> createFormat(@RequestBody ExamFormat examFormat){
+        ExamFormat nFormat = formatRepo.save(examFormat);
+        return new ResponseEntity<>(nFormat.getId(), HttpStatus.CREATED);
     }
 
     @GetMapping("/scorehistory")

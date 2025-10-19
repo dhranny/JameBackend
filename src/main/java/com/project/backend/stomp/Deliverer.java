@@ -28,7 +28,7 @@ public class Deliverer implements WebSocketMessageBrokerConfigurer {
   public void registerStompEndpoints(StompEndpointRegistry registry) {
     System.out.println("register hereeee");
     registry.addEndpoint("/gs-guide-websocket")
-    .addInterceptors(handshake)
+    //.addInterceptors(handshake)
     .setAllowedOrigins("*");
   }
 

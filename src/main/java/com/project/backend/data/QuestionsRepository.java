@@ -7,5 +7,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import com.project.backend.beans.Question;
 
 public interface QuestionsRepository extends JpaRepository<Question, String> {
-    List<Question> findBySource(String source);
+
 }

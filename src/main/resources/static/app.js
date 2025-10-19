@@ -1,12 +1,16 @@
 const stompClient = new StompJs.Client({
-    brokerURL: 'ws://localhost:8080/gs-guide-websocket'
+    brokerURL: 'ws://localhost:8080/gs-guide-websocket',
+    connectHeaders: {
+        'Authorization': 'Bearer ' + 'eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZXN0QGdtYWlsY29tIiwiaWF0IjoxNzUzMTA1NzExLCJleHAiOjE3NTMxNDEwNzl9.jrNF-9GkN8CyKpIX9HX3ZUkzutvx3PG5kf8ITwgN9oQ',
+    }
 });
 
 stompClient.onConnect = (frame) => {
     setConnected(true);
     console.log('Connected: ' + frame);
     stompClient.subscribe('/topic/greetings', (greeting) => {
-        showGreeting(JSON.parse(greeting.body).content);
+        console.log('')
+        showGreeting(greeting.body);
     });
 };
 

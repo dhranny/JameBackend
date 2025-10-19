@@ -29,7 +29,7 @@ public class SecurityConfiguration {
                 .csrf(csrf -> csrf.disable()) // Disable CSRF for stateless APIs (JWT)
                 .authorizeHttpRequests(authorize -> authorize
                         .requestMatchers(
-                                "/api/v1/auth/**", // Public endpoints for authentication
+                                "/auth/**", // Public endpoints for authentication
                                 "/h2-console/**",  // Allow access to H2 console
                                 "/v2/api-docs",
                                 "/app/**",

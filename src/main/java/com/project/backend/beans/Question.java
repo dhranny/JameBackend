@@ -5,7 +5,10 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+
 import java.util.Map;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Data
 @Builder
@@ -21,12 +24,14 @@ public class Question {
     @GeneratedValue(strategy = GenerationType.UUID)
     private String id;
     private String question;
+    
+    @JsonIgnore
     private char answer;
-    private String source;
+    
 
     @ElementCollection
     @CollectionTable(
-        name = "options_table",
+        name = "options_table", 
         joinColumns = @JoinColumn(name = "options_id")
     )
     @MapKeyColumn(name = "options_tag")

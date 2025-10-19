@@ -24,6 +24,11 @@ public class Source {
     private String name;
     private String type;
     private String author;
-    @ManyToMany
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinTable(
+            name = "source_questions",
+            joinColumns = @JoinColumn(name = "source_id"),
+            inverseJoinColumns = @JoinColumn(name = "questions_id   ")
+    )
     private List<Question> questions;
 }

@@ -1,5 +1,7 @@
 package com.project.backend.controllers;
 
+import com.project.backend.beans.Source;
+import com.project.backend.data.SourceRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.http.HttpStatus;
@@ -18,11 +20,11 @@ import java.util.List;
 public class QuestionsController{
 
     @Autowired
-    private QuestionsRepository repository;
+    private SourceRepository repository;
 
     @PostMapping("/addquestions")
-    public HttpStatus addQuestions(@RequestBody List<Question> questions){
-        repository.saveAll(questions);
-        return HttpStatus.ACCEPTED;
+    public ResponseEntity<String> addQuestions(@RequestBody Source source){
+        source = repository.save(source);
+        return new ResponseEntity<>(source.getId(), HttpStatus.ACCEPTED);
     }
 }
