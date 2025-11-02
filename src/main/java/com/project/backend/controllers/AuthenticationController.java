@@ -22,7 +22,13 @@ public class AuthenticationController {
     public ResponseEntity<String> register(
             @RequestBody RegisterRequest request
     ) {
-        return ResponseEntity.ok(service.register(request));
+        try {
+            return ResponseEntity.ok(service.register(request));
+        }
+        catch (RuntimeException e){
+            e.printStackTrace();
+            throw e;
+        }
     }
 
     @PostMapping("/login")
