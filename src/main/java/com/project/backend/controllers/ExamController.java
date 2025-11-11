@@ -51,6 +51,12 @@ public class ExamController {
         return new ResponseEntity<>(nFormat.getId(), HttpStatus.CREATED);
     }
 
+    @GetMapping("/format")
+    public ResponseEntity<List<ExamFormat>> getFormat(){
+        List<ExamFormat> formats = formatRepo.findAll();
+        return new ResponseEntity<>(formats, HttpStatus.CREATED);
+    }
+
     @GetMapping("/scorehistory")
     public ResponseEntity<List<ExamScore>> getHistory(@AuthenticationPrincipal User user){
         return ResponseEntity.ok(scoreRepo.findAll());
