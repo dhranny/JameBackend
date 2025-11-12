@@ -8,6 +8,7 @@ import com.project.backend.data.SourceRepository;
 import io.jsonwebtoken.impl.security.EdwardsCurve;
 import lombok.experimental.Accessors;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatusCode;
 import org.springframework.stereotype.Service;
 
 import java.util.Collection;
@@ -55,5 +56,9 @@ public class ExamFormatService {
     public List<Question> loadQuestion(String id){
         ExamFormat examFormat = getFormat(id);
         return loadQuestions(examFormat);
+    }
+
+    public List<ExamFormat> getAll() {
+        return formatRepo.findAll();
     }
 }

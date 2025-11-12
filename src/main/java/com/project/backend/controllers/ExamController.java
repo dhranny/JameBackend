@@ -37,6 +37,7 @@ public class ExamController {
     @Autowired 
     private ExamScoreRepository scoreRepo;
     private ExamFormatService formatService;
+    private ExamFormatService examFormatServ;
 
     @PostMapping("/init")
     public ResponseEntity<String> initExam(@RequestBody String formatId){
@@ -50,8 +51,14 @@ public class ExamController {
         return new ResponseEntity<>(nFormat.getId(), HttpStatus.CREATED);
     }
 
+    @GetMapping("/format")
+    public ResponseEntity<String> getFormat(){
+
+        return new ResponseEntity<>(examFormatServ.getAll();, HttpStatus.CREATED);
+    }
+
     @GetMapping("/getquestions/{formatId}")
-    public ResponseEntity<List<Question>> getQuestions(@RequestParam String formatId){
+    public ResponseEntity<List<Question>> getQuestions(@PathVariable String formatId){
         List<Question> questions = formatService.loadQuestion(formatId);
         return new ResponseEntity<>(questions, HttpStatus.OK);
     }
