@@ -36,7 +36,9 @@ public class ExamController {
 
     @Autowired 
     private ExamScoreRepository scoreRepo;
+    @Autowired
     private ExamFormatService formatService;
+    @Autowired
     private ExamFormatService examFormatServ;
 
     @PostMapping("/init")
