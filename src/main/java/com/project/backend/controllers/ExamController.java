@@ -52,9 +52,9 @@ public class ExamController {
     }
 
     @GetMapping("/format")
-    public ResponseEntity<String> getFormat(){
+    public ResponseEntity<List<ExamFormat>> getFormat(){
 
-        return new ResponseEntity<>(examFormatServ.getAll();, HttpStatus.CREATED);
+        return new ResponseEntity<>(examFormatServ.getAll(), HttpStatus.CREATED);
     }
 
     @GetMapping("/getquestions/{formatId}")
