@@ -30,6 +30,8 @@ public class ExamSession {
         schManager = new ScheduleManager(this, examFormat.getDurationInSeconds());
     }
 
+
+
     private Question[] loadQuestions(){
         Source source = sessMng.sourceRepo.findById(examFormat.getSourceId()).get();
         List<Question> questions = source.getQuestions();

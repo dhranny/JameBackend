@@ -9,17 +9,15 @@ import java.util.List;
 import java.util.Random;
 import java.util.UUID;
 
+import com.project.backend.beans.Question;
 import com.project.backend.beans.User;
+import com.project.backend.services.ExamFormatService;
 import com.project.backend.services.SessionManager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import com.project.backend.beans.ExamFormat;
 import com.project.backend.beans.ExamScore;
@@ -38,6 +36,7 @@ public class ExamController {
 
     @Autowired 
     private ExamScoreRepository scoreRepo;
+    private ExamFormatService formatService;
 
     @PostMapping("/init")
     public ResponseEntity<String> initExam(@RequestBody String formatId){
@@ -51,10 +50,10 @@ public class ExamController {
         return new ResponseEntity<>(nFormat.getId(), HttpStatus.CREATED);
     }
 
-    @GetMapping("/format")
-    public ResponseEntity<List<ExamFormat>> getFormat(){
-        List<ExamFormat> formats = formatRepo.findAll();
-        return new ResponseEntity<>(formats, HttpStatus.CREATED);
+    @GetMapping("/getquestions/{formatId}")
+    public ResponseEntity<List<Question>> getQuestions(@RequestParam String formatId){
+        List<Question> questions = formatService.loadQuestion(formatId);
+        return new ResponseEntity<>(questions, HttpStatus.OK);
     }
 
     @GetMapping("/scorehistory")

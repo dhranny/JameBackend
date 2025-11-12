@@ -18,17 +18,11 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 @Table(name = "question")
 public class Question {
 
-    
-
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     private String id;
     private String question;
-    
-    @JsonIgnore
     private char answer;
-    
-
     @ElementCollection
     @CollectionTable(
         name = "options_table", 
@@ -37,5 +31,4 @@ public class Question {
     @MapKeyColumn(name = "options_tag")
     @Column(name = "options")
     private Map<Character, String> options;
-
 }
