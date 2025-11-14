@@ -31,7 +31,7 @@ public class ExamFormatService {
         Source source = sourceRepo.findById(examFormat.getSourceId()).get();
         int formatNumOfQuestion = examFormat.getNumOfQuestions();
         List<Question> questions = source.getQuestions();
-        if(formatNumOfQuestion >= questions.size()){
+        if(formatNumOfQuestion <= questions.size()){
             Collections.shuffle(questions);
             return questions.subList(0, formatNumOfQuestion);
         }
