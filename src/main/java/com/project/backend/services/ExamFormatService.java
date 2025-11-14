@@ -36,7 +36,8 @@ public class ExamFormatService {
             return questions.subList(0, formatNumOfQuestion);
         }
         else {
-            throw new IllegalStateException("The questions are not enough for the format");
+            throw new IllegalStateException("The questions are not enough for the format "
+                + questions.size());
         }
     }
 
